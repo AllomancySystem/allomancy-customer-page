@@ -1,0 +1,165 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-heading: var(--font-sans);
+    --font-sans: 'Geist Variable', sans-serif;
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* ==========================================================================
+   ALLOMANCY THEME — light, derived from the brand steel-blue primary.
+   Every color is one OKLCH token: oklch(Lightness Chroma Hue).
+   The whole palette shares the brand HUE (~237.7) so the neutrals are subtly
+   tinted toward the primary instead of being flat gray.
+
+   TO REBRAND: change --primary to your own color (convert it to OKLCH), then
+   re-derive the rest with the SAME hue (see the "Theming" section in README.md
+   for the tool/method used to generate this set). Light is the default theme.
+   ========================================================================== */
+:root {
+    /* --- Brand: the ONE seed knob. Swap --primary and re-derive the hue. ----
+       Seed = hsl(203.53 31.68% 31.57%) (Allomancy logo steel-blue). */
+    --primary: oklch(0.4375 0.0494 237.73);          /* steel-blue action color */
+    --primary-foreground: oklch(0.985 0.01 237.73);  /* near-white text on primary (7.4:1) */
+    --ring: oklch(0.5 0.06 237.73);                  /* focus ring (brand-tinted) */
+
+    /* --- Surfaces: page canvas, cards, popovers, and quiet fills. ----------
+       Lightness ladder: background < muted < secondary/accent, cards lifted above. */
+    --background: oklch(0.975 0.005 237.73);         /* page canvas (cool off-white) */
+    --foreground: oklch(0.21 0.024 237.73);          /* default text (16.5:1 on bg) */
+    --card: oklch(0.995 0.002 237.73);               /* card surface (lifts off canvas) */
+    --card-foreground: oklch(0.21 0.024 237.73);
+    --popover: oklch(0.995 0.002 237.73);            /* dialogs / dropdowns */
+    --popover-foreground: oklch(0.21 0.024 237.73);
+    --secondary: oklch(0.93 0.012 237.73);           /* secondary buttons / quiet chips */
+    --secondary-foreground: oklch(0.3 0.035 237.73);
+    --muted: oklch(0.955 0.006 237.73);              /* muted fills (nav active, badges) */
+    --muted-foreground: oklch(0.5 0.028 237.73);     /* secondary text (5.5:1 on bg) */
+    --accent: oklch(0.93 0.015 237.73);              /* hover / accent surface */
+    --accent-foreground: oklch(0.3 0.035 237.73);
+
+    /* --- Semantic / status: destructive (errors, delete, failed delivery). - */
+    --destructive: oklch(0.55 0.205 27.3);           /* red */
+    --destructive-foreground: oklch(0.985 0.012 27.3); /* near-white on red (5.1:1) */
+
+    /* --- Borders & focus. -------------------------------------------------- */
+    --border: oklch(0.9 0.008 237.73);               /* hairline borders / dividers */
+    --input: oklch(0.9 0.008 237.73);                /* form input borders */
+
+    /* --- Charts: a coherent blue ramp in the brand hue (no view uses charts). */
+    --chart-1: oklch(0.4375 0.0494 237.73);
+    --chart-2: oklch(0.55 0.07 237.73);
+    --chart-3: oklch(0.64 0.075 225);
+    --chart-4: oklch(0.72 0.065 250);
+    --chart-5: oklch(0.81 0.05 237.73);
+
+    /* --- Radius (global corner rounding). ---------------------------------- */
+    --radius: 0.625rem;
+
+    /* --- Sidebar (no view uses it; kept complete + coherent). -------------- */
+    --sidebar: oklch(0.995 0.002 237.73);
+    --sidebar-foreground: oklch(0.21 0.024 237.73);
+    --sidebar-primary: oklch(0.4375 0.0494 237.73);
+    --sidebar-primary-foreground: oklch(0.985 0.01 237.73);
+    --sidebar-accent: oklch(0.93 0.015 237.73);
+    --sidebar-accent-foreground: oklch(0.3 0.035 237.73);
+    --sidebar-border: oklch(0.9 0.008 237.73);
+    --sidebar-ring: oklch(0.5 0.06 237.73);
+}
+
+/* Dark counterpart of the same brand hue. Light is the default (no `class="dark"`
+   on <html>); this applies only when a `.dark` class is set on a root element. */
+.dark {
+    --primary: oklch(0.7 0.072 237.73);              /* lightened steel-blue for dark bg */
+    --primary-foreground: oklch(0.18 0.02 237.73);
+    --ring: oklch(0.55 0.06 237.73);
+
+    --background: oklch(0.19 0.012 237.73);
+    --foreground: oklch(0.96 0.004 237.73);
+    --card: oklch(0.225 0.014 237.73);
+    --card-foreground: oklch(0.96 0.004 237.73);
+    --popover: oklch(0.225 0.014 237.73);
+    --popover-foreground: oklch(0.96 0.004 237.73);
+    --secondary: oklch(0.28 0.018 237.73);
+    --secondary-foreground: oklch(0.96 0.004 237.73);
+    --muted: oklch(0.28 0.014 237.73);
+    --muted-foreground: oklch(0.72 0.02 237.73);
+    --accent: oklch(0.31 0.02 237.73);
+    --accent-foreground: oklch(0.96 0.004 237.73);
+
+    --destructive: oklch(0.55 0.205 27.3);
+    --destructive-foreground: oklch(0.985 0.012 27.3);
+
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 14%);
+
+    --chart-1: oklch(0.7 0.072 237.73);
+    --chart-2: oklch(0.62 0.08 230);
+    --chart-3: oklch(0.55 0.07 250);
+    --chart-4: oklch(0.78 0.06 237.73);
+    --chart-5: oklch(0.85 0.045 237.73);
+
+    --sidebar: oklch(0.225 0.014 237.73);
+    --sidebar-foreground: oklch(0.96 0.004 237.73);
+    --sidebar-primary: oklch(0.7 0.072 237.73);
+    --sidebar-primary-foreground: oklch(0.18 0.02 237.73);
+    --sidebar-accent: oklch(0.31 0.02 237.73);
+    --sidebar-accent-foreground: oklch(0.96 0.004 237.73);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.55 0.06 237.73);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    }
+  body {
+    @apply bg-background text-foreground;
+    }
+  html {
+    @apply font-sans;
+    }
+}
